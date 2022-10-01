@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "491287607024",
+    "project_id": "smarttools-5f4b7",
+    "storage_bucket": "smarttools-5f4b7.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:491287607024:android:f860651e4be472189af435",
+        "android_client_info": {
+          "package_name": "com.example.smart_tools"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "491287607024-d1g4m46uh6r15n5a366r5p6qjgptr5jn.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAXuCtThRuDQWh6P1VGHWFEzxtu81sg7fU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "491287607024-d1g4m46uh6r15n5a366r5p6qjgptr5jn.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
