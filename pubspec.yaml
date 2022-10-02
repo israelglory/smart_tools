@@ -59,6 +59,7 @@ dependencies:
   firebase_messaging: ^11.2.11
   firebase_storage: ^10.2.17
   cloud_firestore: ^3.1.13
+  im_animations: ^0.1.2
 
 
 dev_dependencies:
@@ -84,8 +85,10 @@ flutter:
   uses-material-design: true
 
   # To add assets to your application, add an assets section, like this:
-  # assets:
-  #   - images/a_dot_burr.jpeg
+  assets:
+    - assets/images/
+    - assets/icons/
+    - assets/svgs/
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see
