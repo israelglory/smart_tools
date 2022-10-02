@@ -1,11 +1,7 @@
 import 'dart:async';
 
 import 'package:im_animations/im_animations.dart';
-import 'package:responsive_sizer/responsive_sizer.dart';
-import 'package:smart_tools/components/app_text.dart';
-import 'package:smart_tools/routes/routes.dart';
-
-import '../routes/exports.dart';
+import 'package:smart_tools/routes/exports.dart';
 
 class SplashScreen extends StatelessWidget {
   const SplashScreen({Key? key}) : super(key: key);
@@ -17,7 +13,13 @@ class SplashScreen extends StatelessWidget {
       initState: (state) async {
         await Future.delayed(const Duration(seconds: 3));
 
-        Get.toNamed(RoutesClass.getLoginRoute());
+        var user = FirebaseAuth.instance.currentUser;
+
+        if (user != null) {
+          Get.offNamed(RoutesClass.getHomeRoute());
+        } else {
+          Get.offNamed(RoutesClass.getLoginRoute());
+        }
 
         /*Timer(const Duration(seconds: 15), () {
           // 5 seconds over, navigate to Page2.

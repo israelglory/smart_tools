@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
@@ -100,29 +101,33 @@ class LoginPage extends StatelessWidget {
                                                 color: Colors.grey.shade200))),
                                     child: TextField(
                                       controller: controller.passwordCtrl,
-                                      obscureText: true,
+                                      obscureText: controller.show,
                                       decoration: InputDecoration(
-                                          prefixIcon: const Icon(
-                                            Icons.lock,
-                                          ),
-                                          suffixIcon: InkWell(
-                                            onTap: () {
-                                              //controller.onObscure();
-                                              if (controller.show = true) {
-                                                controller.onObscure();
-                                              }
-                                              if (controller.show = false) {
-                                                controller.onObscure();
-                                              }
-                                            },
-                                            child: const Icon(
-                                              Icons.remove_red_eye,
-                                            ),
-                                          ),
-                                          hintText: "Password",
-                                          hintStyle: const TextStyle(
-                                              color: Colors.grey),
-                                          border: InputBorder.none),
+                                        prefixIcon: const Icon(
+                                          Icons.lock,
+                                        ),
+                                        suffixIcon: controller.show == true
+                                            ? InkWell(
+                                                onTap: () {
+                                                  controller.onObscure();
+                                                },
+                                                child: const Icon(
+                                                  CupertinoIcons.eye_fill,
+                                                ))
+                                            : InkWell(
+                                                onTap: () {
+                                                  controller.onhide();
+                                                },
+                                                child: const Icon(
+                                                  CupertinoIcons.eye_slash_fill,
+                                                ),
+                                              ),
+                                        hintText: "Password",
+                                        hintStyle: const TextStyle(
+                                          color: Colors.grey,
+                                        ),
+                                        border: InputBorder.none,
+                                      ),
                                     ),
                                   ),
                                 ],
@@ -136,9 +141,7 @@ class LoginPage extends StatelessWidget {
                               mainAxisAlignment: MainAxisAlignment.end,
                               children: [
                                 GestureDetector(
-                                  onTap: () {
-                                    print('Taped');
-                                  },
+                                  onTap: () {},
                                   child: const Padding(
                                     padding: EdgeInsets.all(10.0),
                                     child: AppText(
@@ -154,15 +157,36 @@ class LoginPage extends StatelessWidget {
                               height: 25,
                             ),
                             AppButton(
-                              onPressed: () {},
+                              onPressed: () {
+                                controller.login();
+                              },
                               color: AppColors.primaryColor,
                               radius: 50,
                               width: 100.w,
                               padding: const EdgeInsets.all(15.0),
-                              child: const AppText("Login",
-                                  size: 20,
+                              child: Visibility(
+                                visible: !controller.inProgress,
+                                replacement: const CircularProgressIndicator(
                                   color: Colors.white,
-                                  fontWeight: FontWeight.bold),
+                                ),
+                                child: Row(
+                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: const [
+                                    AppText("Login",
+                                        size: 20,
+                                        color: Colors.white,
+                                        fontWeight: FontWeight.bold),
+                                    SizedBox(
+                                      width: 10,
+                                    ),
+                                    Icon(
+                                      Icons.arrow_circle_right_outlined,
+                                      color: Colors.white,
+                                    )
+                                  ],
+                                ),
+                              ),
                             ),
                             const SizedBox(
                               height: 20,

@@ -9,7 +9,18 @@ class HomePage extends StatelessWidget {
       init: HomeController(),
       builder: (controller) {
         return Scaffold(
-          body: Container(),
+          body: Center(
+            child: AppButton(
+              onPressed: controller.logOut,
+              padding: const EdgeInsets.all(20),
+              color: AppColors.primaryColor,
+              radius: 10,
+              child: const AppText(
+                'LogOut',
+                color: Colors.white,
+              ),
+            ),
+          ),
         );
       },
     );

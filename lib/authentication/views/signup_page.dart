@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
@@ -86,14 +87,13 @@ class SignUpPage extends StatelessWidget {
                                     child: TextField(
                                       controller:
                                           controller.firstnameController,
-                                      decoration: InputDecoration(
+                                      decoration: const InputDecoration(
                                         prefixIcon: Icon(
                                           Icons.person,
-                                          color: AppColors.primaryColor,
                                         ),
                                         hintText: "First Name",
                                         hintStyle:
-                                            const TextStyle(color: Colors.grey),
+                                            TextStyle(color: Colors.grey),
                                         border: InputBorder.none,
                                       ),
                                     ),
@@ -109,13 +109,12 @@ class SignUpPage extends StatelessWidget {
                                     ),
                                     child: TextField(
                                       controller: controller.lastController,
-                                      decoration: InputDecoration(
+                                      decoration: const InputDecoration(
                                         prefixIcon: Icon(
                                           Icons.person,
-                                          color: AppColors.primaryColor,
                                         ),
                                         hintText: "Last Name",
-                                        hintStyle: const TextStyle(
+                                        hintStyle: TextStyle(
                                           color: Colors.grey,
                                         ),
                                         border: InputBorder.none,
@@ -133,13 +132,12 @@ class SignUpPage extends StatelessWidget {
                                     ),
                                     child: TextField(
                                       controller: controller.emailController,
-                                      decoration: InputDecoration(
+                                      decoration: const InputDecoration(
                                         prefixIcon: Icon(
                                           Icons.email,
-                                          color: AppColors.primaryColor,
                                         ),
                                         hintText: "Email address",
-                                        hintStyle: const TextStyle(
+                                        hintStyle: TextStyle(
                                           color: Colors.grey,
                                         ),
                                         border: InputBorder.none,
@@ -159,24 +157,25 @@ class SignUpPage extends StatelessWidget {
                                       controller: controller.passwordController,
                                       obscureText: controller.show,
                                       decoration: InputDecoration(
-                                        prefixIcon: Icon(
+                                        prefixIcon: const Icon(
                                           Icons.lock,
-                                          color: AppColors.primaryColor,
                                         ),
-                                        suffixIcon: InkWell(
-                                          onTap: () {
-                                            //controller.onObscure();
-                                            if (controller.show = true) {
-                                              controller.onObscure();
-                                            }
-                                            if (controller.show = false) {
-                                              controller.onObscure();
-                                            }
-                                          },
-                                          child: const Icon(
-                                            Icons.remove_red_eye,
-                                          ),
-                                        ),
+                                        suffixIcon: controller.show == true
+                                            ? InkWell(
+                                                onTap: () {
+                                                  controller.onObscure();
+                                                },
+                                                child: const Icon(
+                                                  CupertinoIcons.eye_fill,
+                                                ))
+                                            : InkWell(
+                                                onTap: () {
+                                                  controller.onhide();
+                                                },
+                                                child: const Icon(
+                                                  CupertinoIcons.eye_slash_fill,
+                                                ),
+                                              ),
                                         hintText: "Password",
                                         hintStyle: const TextStyle(
                                           color: Colors.grey,
@@ -193,16 +192,35 @@ class SignUpPage extends StatelessWidget {
                             ),
                             AppButton(
                               onPressed: () {
-                                Get.toNamed(RoutesClass.getHomeRoute());
+                                controller.signUp();
                               },
                               color: AppColors.primaryColor,
                               radius: 50,
                               width: 100.w,
                               padding: const EdgeInsets.all(15.0),
-                              child: const AppText("Register",
-                                  size: 20,
+                              child: Visibility(
+                                visible: !controller.inProgress,
+                                replacement: const CircularProgressIndicator(
                                   color: Colors.white,
-                                  fontWeight: FontWeight.bold),
+                                ),
+                                child: Row(
+                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: const [
+                                    AppText("Register",
+                                        size: 20,
+                                        color: Colors.white,
+                                        fontWeight: FontWeight.bold),
+                                    SizedBox(
+                                      width: 10,
+                                    ),
+                                    Icon(
+                                      Icons.arrow_circle_right_outlined,
+                                      color: Colors.white,
+                                    )
+                                  ],
+                                ),
+                              ),
                             ),
                             const SizedBox(
                               height: 20,
