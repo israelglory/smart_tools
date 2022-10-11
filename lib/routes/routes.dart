@@ -1,3 +1,5 @@
+import 'package:smart_tools/features/diary/views/create_diary.dart';
+
 import 'exports.dart';
 
 class RoutesClass {
@@ -11,6 +13,12 @@ class RoutesClass {
   //home
   static const String home = '/home';
 
+  //Diary
+  static const String diaryHome = '/feature/diary_home';
+
+  //Create Diary
+  static const String createDiary = '/feature/create_diary';
+
   // GETTERS
   // Authentication Routes
   static String getRegisterRoute() => registerAccount;
@@ -19,8 +27,13 @@ class RoutesClass {
   //Splash Screen
   static String getSplashScreenRoute() => splashScreen;
 
-  //Splash Screen
+  //Home
   static String getHomeRoute() => home;
+
+  //Diary
+  static String getDiaryHomeRoute() => diaryHome;
+
+  static String getCreateDiaryRoute() => createDiary;
 
   // ROUTING FUNCTION
   static List<GetPage> routes = [
@@ -53,6 +66,22 @@ class RoutesClass {
     GetPage(
       name: getHomeRoute(),
       page: () => const HomePage(),
+      transition: Transition.fadeIn,
+      transitionDuration: const Duration(seconds: 0, milliseconds: 400),
+      curve: Curves.fastOutSlowIn,
+    ),
+
+    //Diary
+    GetPage(
+      name: getDiaryHomeRoute(),
+      page: () => const DiaryHomePage(),
+      transition: Transition.fadeIn,
+      transitionDuration: const Duration(seconds: 0, milliseconds: 400),
+      curve: Curves.fastOutSlowIn,
+    ),
+    GetPage(
+      name: getCreateDiaryRoute(),
+      page: () => const CreateDiaryPage(),
       transition: Transition.fadeIn,
       transitionDuration: const Duration(seconds: 0, milliseconds: 400),
       curve: Curves.fastOutSlowIn,

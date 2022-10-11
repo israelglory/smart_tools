@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:smart_tools/routes/exports.dart';
 
 class HomePage extends StatelessWidget {
@@ -9,18 +10,15 @@ class HomePage extends StatelessWidget {
       init: HomeController(),
       builder: (controller) {
         return Scaffold(
-          body: Center(
-            child: AppButton(
-              onPressed: controller.logOut,
-              padding: const EdgeInsets.all(20),
-              color: AppColors.primaryColor,
-              radius: 10,
-              child: const AppText(
-                'LogOut',
-                color: Colors.white,
+          appBar: AppBar(
+            actions: [
+              IconButton(
+                icon: const Icon(Icons.exit_to_app),
+                onPressed: controller.logOut,
               ),
-            ),
+            ],
           ),
+          body: const DiaryHomePage(),
         );
       },
     );

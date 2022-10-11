@@ -7,4 +7,11 @@ class HomeController extends GetxController {
     authService.logOut();
     Get.offNamed(RoutesClass.getLoginRoute());
   }
+
+  int selectedIndex = 0;
+  final List children = [const DiaryHomePage()];
+  void onItemTapped(int index) {
+    selectedIndex = index;
+    update();
+  }
 }
